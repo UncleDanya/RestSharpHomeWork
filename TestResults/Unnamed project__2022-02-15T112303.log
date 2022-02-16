@@ -1,0 +1,139 @@
+﻿2022-02-15T11:23:02.9771005+02:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-02-15T11:23:02.9772507+02:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework net50 in x64 mode execution started
+2022-02-15T11:23:02.9772575+02:00;VSTestExecutionThread;Info;TestAdapter Location: C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-02-15T11:23:02.9799802+02:00;VSTestExecutionThread;Info;Current UserName: 'Danya', MachineName: 'DESKTOP-JSM92F3'
+2022-02-15T11:23:03.0080008+02:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-15T11:23:03.0082015+02:00;VSTestExecutionThread;Info;Output folder configured to "C:\Users\Danya\source\repos\RestSharpHomeWork\TestResults" (default)
+2022-02-15T11:23:03.0082932+02:00;VSTestExecutionThread;Info;Profile: 
+2022-02-15T11:23:03.1055666+02:00;VSTestExecutionThread;Info;Log file path: C:\Users\Danya\source\repos\RestSharpHomeWork\TestResults\Unnamed project__2022-02-15T112303.log
+2022-02-15T11:23:03.1152625+02:00;Thread#13;Info;Checking activation
+2022-02-15T11:23:03.2735217+02:00;Thread#13;Info;Activated.
+2022-02-15T11:23:03.2737271+02:00;Thread#13;Info;Activation check completed
+2022-02-15T11:23:03.2738034+02:00;Thread#13;Info;Starting test run
+2022-02-15T11:23:03.3800433+02:00;Thread#13;Info;Discovering target: Default
+2022-02-15T11:23:03.3802378+02:00;Thread#13;Info;Discovering tests from assembly: C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-15T11:23:03.5674877+02:00;Thread#13;Info;Discovered tests from assembly: C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-15T11:23:03.5690519+02:00:Test Suite Dump
+2022-02-15T11:23:03.5713508+02:00:#0: Unnamed project/ - 
+2022-02-15T11:23:03.5713833+02:00:#1: Default - 
+2022-02-15T11:23:03.5713861+02:00:#2: RestSharpHomeWork - 
+2022-02-15T11:23:03.5713905+02:00:#3: SpecFlowFeature1 - 
+2022-02-15T11:23:03.5725691+02:00:#4: Add two numbers - TestAssembly:RestSharpHomeWork/Feature:SpecFlowFeature1/Scenario:Add+two+numbers
+2022-02-15T11:23:03.5726386+02:00:End: Test Suite Dump
+2022-02-15T11:23:03.5951024+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-15T11:23:03.5972317+02:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2022-02-15T11:23:03.5973155+02:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2022-02-15T11:23:03.6011664+02:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-15T11:23:03.6011837+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2022-02-15T11:23:03.6011860+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2022-02-15T11:23:03.6011894+02:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2022-02-15T11:23:03.6017254+02:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2022-02-15T11:23:03.6029459+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-15T11:23:03.6052367+02:00:Thread #0: creating new test thread executor for RestSharpHomeWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-02-15T11:23:03.6075829+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2022-02-15T11:23:03.6077475+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2022-02-15T11:23:03.6155652+02:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.OutOfProc.StreamJsonRPC.OutOfProcessTestAssemblyExecutorHost to execute tests
+2022-02-15T11:23:03.6175755+02:00:starting Out Of Process Executor
+2022-02-15T11:23:03.6251246+02:00:Assembly resolving Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-15T11:23:03.6273081+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' from .deps.json file
+2022-02-15T11:23:03.6273480+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' from .deps.json
+2022-02-15T11:23:03.6284533+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-15T11:23:03.6288207+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.dll'
+2022-02-15T11:23:03.6289532+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.exe'
+2022-02-15T11:23:03.6290278+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-15T11:23:03.6293626+02:00:TargetFramework: .NETCoreApp,Version=v5.0
+2022-02-15T11:23:03.6300556+02:00:Tfm: netcoreapp5.0
+2022-02-15T11:23:03.6300731+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-15T11:23:03.6300807+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.dll'
+2022-02-15T11:23:03.6301960+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.exe'
+2022-02-15T11:23:03.6302406+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-15T11:23:03.6361714+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-15T11:23:03.6361901+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-15T11:23:03.6362676+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-15T11:23:03.6363034+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-15T11:23:03.6364588+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-15T11:23:03.6364655+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-15T11:23:03.6365034+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-15T11:23:03.6365334+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-15T11:23:03.6366440+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-15T11:23:03.6366497+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-15T11:23:03.6366834+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-15T11:23:03.6367120+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-15T11:23:03.6453924+02:00:Starting callback TCP Rpc server
+2022-02-15T11:23:03.6686176+02:00:Asynchronously starting background TCP Rpc Server on port 32768
+2022-02-15T11:23:03.6687464+02:00:Started callback TCP Rpc server on port 32768
+2022-02-15T11:23:03.6687540+02:00:Starting logger TCP Rpc server
+2022-02-15T11:23:03.6702774+02:00:Asynchronously starting background TCP Rpc Server on port 32769
+2022-02-15T11:23:03.6703538+02:00:Started logger TCP Rpc server on port 32769
+2022-02-15T11:23:03.7675149+02:00;Thread#13;Info;Executor full path resolved: C:\Program Files\dotnet\dotnet.exe
+2022-02-15T11:23:03.7703177+02:00;Thread#13;Info;Starting SpecFlow+ Runner executor process with attached debugger...
+2022-02-15T11:23:03.8823369+02:00;Thread#13;Info;Successfully started SpecFlow+ Runner executor process
+2022-02-15T11:23:03.8872920+02:00:Out of Process Executor 18420 started
+2022-02-15T11:23:03.8873182+02:00:Waiting for endpoint
+2022-02-15T11:23:04.5959618+02:00:Assembly resolving Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-15T11:23:04.5959856+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' from .deps.json file
+2022-02-15T11:23:04.5959929+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' from .deps.json
+2022-02-15T11:23:04.5960001+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-15T11:23:04.5960022+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.dll'
+2022-02-15T11:23:04.5960502+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.exe'
+2022-02-15T11:23:04.5960906+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-15T11:23:04.5960945+02:00:TargetFramework: .NETCoreApp,Version=v5.0
+2022-02-15T11:23:04.5961170+02:00:Tfm: netcoreapp5.0
+2022-02-15T11:23:04.5961217+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-15T11:23:04.5961249+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.dll'
+2022-02-15T11:23:04.5962015+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.exe'
+2022-02-15T11:23:04.5962544+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-15T11:23:04.5968683+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-15T11:23:04.5968815+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-15T11:23:04.5969498+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-15T11:23:04.5969946+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-15T11:23:04.5971257+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-15T11:23:04.5971341+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-15T11:23:04.5971822+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-15T11:23:04.5972252+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-15T11:23:04.5973571+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-15T11:23:04.5973642+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-15T11:23:04.5974235+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-15T11:23:04.5974640+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-15T11:23:04.9184756+02:00:Remote executor port received: 32770
+2022-02-15T11:23:04.9187733+02:00:Creating executor TCP client on port 32770
+2022-02-15T11:23:04.9191106+02:00:Created executor TCP client on port 32770
+2022-02-15T11:23:04.9191187+02:00:Connecting to remote executor TCP server
+2022-02-15T11:23:04.9199945+02:00:Connected remote executor TCP server
+2022-02-15T11:23:04.9211259+02:00:trying to connect to Out of Process Executor the 1 attempt
+2022-02-15T11:23:04.9211372+02:00:Connection to Out of Process Executor established in the 1 attempt
+2022-02-15T11:23:05.0813651+02:00:2022-02-15T11:23:05.0798315+02:00:OutOfProcessTestAssemblyExecutor: initialized for C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll on test thread #0
+2022-02-15T11:23:05.0859700+02:00:Endpoint 18420 started
+2022-02-15T11:23:05.1009738+02:00:2022-02-15T11:23:05.1002760+02:00:OutOfProcessTestAssemblyExecutor: running tests...
+2022-02-15T11:23:05.2035194+02:00:2022-02-15T11:23:05.2028086+02:00:Assembly resolving TechTalk.SpecFlow, Version=3.9.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41
+2022-02-15T11:23:05.2071691+02:00:2022-02-15T11:23:05.2066134+02:00:[AssemblyCache] Trying to resolve 'TechTalk.SpecFlow' from .deps.json file
+2022-02-15T11:23:05.2108638+02:00:2022-02-15T11:23:05.2098843+02:00:[AssemblyCache] Resolved 'TechTalk.SpecFlow' to 'C:\Users\Danya\.nuget\packages\specflow\3.9.50\lib\netstandard2.0\TechTalk.SpecFlow.dll'
+2022-02-15T11:23:05.3355109+02:00:2022-02-15T11:23:05.3348480+02:00:Thread#0:T:-> Loading plugin C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-15T11:23:05.3379630+02:00:2022-02-15T11:23:05.3372153+02:00:Assembly resolving Microsoft.Extensions.DependencyModel, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2022-02-15T11:23:05.3391604+02:00:2022-02-15T11:23:05.3386493+02:00:[AssemblyCache] Trying to resolve 'Microsoft.Extensions.DependencyModel' from .deps.json file
+2022-02-15T11:23:05.3407222+02:00:2022-02-15T11:23:05.3400842+02:00:[AssemblyCache] Resolved 'Microsoft.Extensions.DependencyModel' to 'C:\Users\Danya\.nuget\packages\microsoft.extensions.dependencymodel\1.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll'
+2022-02-15T11:23:05.3930318+02:00:2022-02-15T11:23:05.3924761+02:00:Assembly resolving Microsoft.DotNet.PlatformAbstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2022-02-15T11:23:05.3942206+02:00:2022-02-15T11:23:05.3936718+02:00:[AssemblyCache] Trying to resolve 'Microsoft.DotNet.PlatformAbstractions' from .deps.json file
+2022-02-15T11:23:05.3957429+02:00:2022-02-15T11:23:05.3951513+02:00:[AssemblyCache] Resolved 'Microsoft.DotNet.PlatformAbstractions' to 'C:\Users\Danya\.nuget\packages\microsoft.dotnet.platformabstractions\1.0.3\lib\netstandard1.3\Microsoft.DotNet.PlatformAbstractions.dll'
+2022-02-15T11:23:05.4092257+02:00:2022-02-15T11:23:05.4085603+02:00:Thread#0:T:-> Loading plugin C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-02-15T11:23:05.4240080+02:00:2022-02-15T11:23:05.4233728+02:00:Thread#0:T:-> Using default config
+2022-02-15T11:23:05.4336712+02:00:2022-02-15T11:23:05.4329606+02:00:Assembly resolving AutomationUtils, Version=1.1.79.0, Culture=neutral, PublicKeyToken=null
+2022-02-15T11:23:05.4350049+02:00:2022-02-15T11:23:05.4345680+02:00:[AssemblyCache] Trying to resolve 'AutomationUtils' from .deps.json file
+2022-02-15T11:23:05.4360712+02:00:2022-02-15T11:23:05.4357139+02:00:[AssemblyCache] Resolved 'AutomationUtils' to 'C:\Users\Danya\.nuget\packages\automationutils\1.1.79\lib\netcoreapp3.1\AutomationUtils.dll'
+2022-02-15T11:23:05.4440340+02:00:2022-02-15T11:23:05.4433554+02:00:Assembly resolving Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-15T11:23:05.4454655+02:00:2022-02-15T11:23:05.4449272+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.TestPlatform.ObjectModel' from .deps.json file
+2022-02-15T11:23:05.4465901+02:00:2022-02-15T11:23:05.4462199+02:00:[AssemblyCache] Resolved 'Microsoft.VisualStudio.TestPlatform.ObjectModel' to 'C:\Users\Danya\.nuget\packages\microsoft.testplatform.objectmodel\17.0.0\lib\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll'
+2022-02-15T11:23:05.4826018+02:00:2022-02-15T11:23:05.4819658+02:00:Assembly resolving SpecFlow.Internal.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41
+2022-02-15T11:23:05.4836569+02:00:2022-02-15T11:23:05.4833289+02:00:[AssemblyCache] Trying to resolve 'SpecFlow.Internal.Json' from .deps.json file
+2022-02-15T11:23:05.4845394+02:00:2022-02-15T11:23:05.4842057+02:00:[AssemblyCache] Resolved 'SpecFlow.Internal.Json' to 'C:\Users\Danya\.nuget\packages\specflow.internal.json\1.0.8\lib\netstandard2.0\SpecFlow.Internal.Json.dll'
+2022-02-15T11:23:05.5864436+02:00:Thread#0: Test #4/0 is started on thread #0
+2022-02-15T11:23:05.6007440+02:00:2022-02-15T11:23:05.6000446+02:00:Thread#0:B:When User makes GET user info request
+2022-02-15T11:23:05.6217067+02:00:2022-02-15T11:23:05.6210305+02:00:Assembly resolving RestSharp, Version=107.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75
+2022-02-15T11:23:05.6230487+02:00:2022-02-15T11:23:05.6224906+02:00:[AssemblyCache] Trying to resolve 'RestSharp' from .deps.json file
+2022-02-15T11:23:05.6247339+02:00:2022-02-15T11:23:05.6240862+02:00:[AssemblyCache] Resolved 'RestSharp' to 'C:\Users\Danya\.nuget\packages\restsharp\107.2.1\lib\net5.0\RestSharp.dll'
+2022-02-15T11:23:05.6445735+02:00:2022-02-15T11:23:05.6439645+02:00:Assembly resolving Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+2022-02-15T11:23:05.6458217+02:00:2022-02-15T11:23:05.6453854+02:00:[AssemblyCache] Trying to resolve 'Newtonsoft.Json' from .deps.json file
+2022-02-15T11:23:05.6470804+02:00:2022-02-15T11:23:05.6466502+02:00:[AssemblyCache] Resolved 'Newtonsoft.Json' to 'C:\Users\Danya\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll'
+2022-02-15T11:23:05.7290421+02:00:2022-02-15T11:23:05.7283505+02:00:Assembly resolving Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+2022-02-15T11:23:05.9514737+02:00:2022-02-15T11:23:05.9507947+02:00:Thread#0:T:done: UserSteps.WhenUserMakesGetUserInfoRequest() (0.3s)
+2022-02-15T11:23:05.9536103+02:00:2022-02-15T11:23:05.9530552+02:00:Thread#0:B:Then Verify that
