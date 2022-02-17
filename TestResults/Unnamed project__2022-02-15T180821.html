@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Unnamed project Test Execution Report</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript">
+            /**
+            * jQuery.fn.sortElements
+            * --------------
+            * #author James Padolsey (http://james.padolsey.com)
+            * #version 0.11
+            * #updated 18-MAR-2010
+            * #url https://raw.github.com/jamespadolsey/jQuery-Plugins/master/sortElements/jquery.sortElements.js
+            * --------------
+            * #param Function comparator:
+            *   Exactly the same behaviour as [1,2,3].sort(comparator)
+            *   
+            * #param Function getSortable
+            *   A function that should return the element that is
+            *   to be sorted. The comparator will run on the
+            *   current collection, but you may want the actual
+            *   resulting sort to occur on a parent or another
+            *   associated element.
+            *   
+            *   E.g. $('td').sortElements(comparator, function(){
+            *      return this.parentNode; 
+            *   })
+            *   
+            *   The <td>'s parent (<tr>) will be sorted instead
+            *   of the <td> itself.
+            */
+            jQuery.fn.sortElements = (function () {
+
+                var sort = [].sort;
+
+                return function (comparator, getSortable) {
+
+                    getSortable = getSortable || function () { return this; };
+
+                    var placements = this.map(function () {
+
+                        var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+
+                        // Since the element itself will change position, we have
+                        // to have some way of storing it's original position in
+                        // the DOM. The easiest way is to have a 'flag' node:
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+                        return function () {
+
+                            if (parentNode === this) {
+                                throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                            }
+
+                            // Insert before flag:
+                            parentNode.insertBefore(this, nextSibling);
+                            // Remove flag:
+                            parentNode.removeChild(nextSibling);
+
+                        };
+
+                    });
+
+                    return sort.call(this, comparator).each(function (i) {
+                        placements[i].call(getSortable.call(this));
+                    });
+
+                };
+
+            })();
+        </script>
+        <script type="text/javascript">
+            jQuery.fn.setBarSizes = (function () {
+                return function (metricName, maxBarSize, min) {
+                    var max = Math.max.apply(Math, $.makeArray($(this).map(function () { return Number($(this).attr('data-sr-' + metricName)); })));
+                    var scale = 1.0;
+                    while (max > 0.0 && max <= 10.0) {
+                        scale = scale * 10.0;
+                        max = max * 10.0;
+                    }
+                    max = (Math.ceil(max / 2) * 2) / scale;
+
+                    this.each(function () {
+                        var barAnchor = $(this).find('a');
+                        var actual = $(this).attr('data-sr-' + metricName);
+                        var newHeight = Math.max(Math.round(maxBarSize * (actual - min) / (max - min)), 2);
+                        barAnchor.css({ height: newHeight });
+                    });
+
+                    var unit = "";
+                    if (metricName.substr(metricName.length - 4, 4) === "time")
+                        unit = "s";
+
+                    $('#testview .scale-min-label').each(function () {
+                        $(this).text(min.toString() + unit);
+                    });
+                    $('#testview .scale-max-label').each(function () {
+                        $(this).text(max.toString() + unit);
+                    });
+                    var mid = max / 2;
+                    $('#testview .scale-mid-label').each(function () {
+                        $(this).text(mid.toString() + unit);
+                    });
+                };
+            })();
+
+            function getComparer(metricName, isDesc) {
+                return function (a, b) {
+                    var aNumber = Number($(a).attr('data-sr-' + metricName));
+                    var bNumber = Number($(b).attr('data-sr-' + metricName));
+                    var result = aNumber > bNumber ? 1 : (aNumber < bNumber ? -1 : 0);
+                    if (isDesc)
+                        result = -1 * result;
+
+                    if (result == 0 && metricName != "order")
+                        result = getComparer("order", false)(a, b);
+
+                    return result;
+                };
+            }
+
+            var currentSort = "";
+            function doSort(allowToggleDesc) {
+                var newSort = $("input[name='barSortOrder']:checked").val();
+                if (allowToggleDesc && currentSort == newSort) {
+                    $('#barSortDesc').click();
+                    doSort(false);
+                    return;
+                }
+                currentSort = newSort;
+                $('#testview td.testview-item').sortElements(getComparer(newSort, $('#barSortDesc').is(':checked')));
+            }
+
+
+            function doSetHeights(allowSort) {
+                var selectedMetric = $("input[name='barHeight']:checked").val();
+                $('#testview td.testview-item').setBarSizes(selectedMetric, 60, 0.0);
+
+                if (allowSort && currentSort != selectedMetric) {
+                    var $radios = $("input[name='barSortOrder']");
+                    $radios.filter('[value=' + selectedMetric + ']').attr('checked', true);
+                    $("#barSortDesc").attr("checked", [true]);
+                    doSort(false);
+                }
+            }
+
+            $(document).ready(function () {
+                $("input[name='barSortOrder']").click(function () { doSort(true); return true; });
+                $("input[name='barSortDesc']").change(function () { doSort(false); });
+                $("input[name='barHeight']").change(function () { doSetHeights(true); });
+
+                doSort(false);
+                doSetHeights(false);
+
+                $("div.scrollable").css({ 'overflow': 'auto' });
+            });
+        </script>
+
+        <style type="text/css">
+            body 
+            {
+                color: #000000;
+                font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;
+                line-height: 130%;
+            }
+            h1 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 170%;
+                font-weight: bold;
+            }            
+            h2 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 130%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            h3 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 120%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            a.bar
+            {
+                text-decoration: none;
+                display: block;
+                line-height: 1px;
+            }
+            .description
+            {
+                font-style: italic;
+            }
+            .log 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                display: block;
+                margin: 0px;
+            }
+            .errorMessage 
+            {
+                width: 600px;
+                color: Red;
+                font-weight: bold;
+            }
+            .stackTrace 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                font-style: italic;
+                color: Red;
+                display: block;
+            }
+            table.testEvents
+            {
+                border: solid 1px #e8eef4;
+                border-collapse: collapse;
+            }
+            table.testEvents td
+            {
+                vertical-align: top;
+                padding: 5px;
+                border: solid 1px #e8eef4;
+            }
+            table.testEvents th
+            {
+                padding: 6px 5px;
+                text-align: left;
+                background-color: #e8eef4;
+                border: solid 1px #e8eef4;                
+            }
+            .comment
+            {
+                font-style: italic;
+                font-size: smaller;
+            }
+            .startupBar
+            {
+                background-color: #EEEEEE;
+                cursor: default;
+            }
+            
+            .colorSucceeded
+            {
+                background-color: #90ED7B;
+            }
+            .colorIgnored
+            {
+                background-color: #FFFF85;
+            }
+            .colorPending
+            {
+                background-color: #D47BED;
+            }
+            .colorNothingToRun
+            {
+                background-color: #CCCCFF;
+            }
+            .colorSkipped
+            {
+                background-color: #CCCCFF;
+            }
+            .colorInconclusive
+            {
+                background-color: #7BEDED;
+            }
+            .colorCleanupFailed
+            {
+                background-color: #FFCCCC;
+            }
+            .colorRandomlyFailed
+            {
+                background-color: #EDB07B;
+            }
+            .colorFailed
+            {
+                background-color: #ED5F5F;
+            }
+            .colorInitializationFailed
+            {
+                background-color: #FF0000;
+            }
+            .colorFrameworkError
+            {
+                background-color: #FF0000;
+            }
+            ul.subNodeLinks
+            {
+                padding-left: 20px;
+                margin: 0px;
+            }
+            ul.subNodeLinks li
+            {
+                list-style: none;
+            }
+            
+            /* views general */
+            div.scrollable
+            {
+                /*overflow: auto; - thsi has to be set from js, because of an IE9 bug */
+            }
+            div.viewbox
+            {
+                position: relative;
+                border: 3px solid #e8eef4;
+            }
+            div.viewbox table
+            {
+                border: 0px;
+            }
+                        
+            /* testview */
+            #testview
+            {
+                padding-top: 23px;
+            }
+            
+            table.testview-items td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 1px;
+            }
+            td.right-padding, td.left-padding
+            {
+                width: 25px;
+                min-width: 25px;
+            }
+            table.testview-items a.bar
+            {
+                width: 5px;
+            }
+            table.testview-items tr.testview-items-row
+            {
+                height: 60px;
+            }
+            
+            /* scale */
+            table.vertical-scale 
+            {
+                position: absolute;
+                top: 23px;
+                left: 0px;
+                width: 100%;
+                z-index: -100;
+            }
+            table.vertical-scale td, tr.horizontal-scale td
+            {
+                font-size: 60%;
+                line-height: normal;
+            }
+            table.vertical-scale tr.scale-max, table.vertical-scale tr.scale-mid 
+            {
+                height: 30px;
+            }
+            tr.horizontal-scale, table.vertical-scale tr.scale-min 
+            {
+                height: 12px;
+            }
+            
+            td.scale-max-label, td.scale-mid-label, td.scale-min-label
+            {
+                border-top: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: top;
+            }
+            td.scale-10-label
+            {
+                border-left: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: bottom;
+                padding-left: 1px;
+            }
+            tr.scale-mid td, tr.scale-min td, tr.scale-max td
+            {
+                border-top: solid 1px #E6E6E6;
+            }
+           
+            
+            /* bar-control */
+            #bar-control
+            {
+                font-size: 60%;
+                line-height: normal;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+            #bar-control label
+            {
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            #bar-control .option
+            {
+                vertical-align: middle;
+                text-transform: lowercase;
+            }
+            #bar-control input[type="checkbox"]
+            {
+                padding: 0 2px 0 3px;
+            }
+            #bar-control input
+            {
+                vertical-align: top;
+                height: 12px;
+                margin: 0px;
+                padding: 0px;
+            }
+            #bar-control div
+            {
+                float: right;
+                margin: 3px 5px 3px 5px;
+            }
+
+            /* timeline view */
+            #timelineview
+            {
+                padding-top: 5px;
+            }
+            table.timelineview a
+            {
+                height: 20px;
+            }
+            table.timelineview td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 0px;
+                border: 0px;
+            }
+            tr.thread-items-row
+            {
+                height: 25px;
+            }
+            tr.thread-items-row td
+            {
+                vertical-align: bottom;
+            }
+            td.thread-label
+            {
+                padding: 0px 6px 0px 6px;
+                text-align: right;
+                line-height: 18px;
+                vertical-align: bottom;
+            }
+            th.thread-label
+            {
+                padding: 3px 6px 0px 6px;
+                line-height: 18px;
+                text-align: left;
+                vertical-align: bottom;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Unnamed project Test Execution Report</h1>
+        
+    <ul>
+        <li>Project: Unnamed project</li>
+        <li>Configuration: </li>
+        <li>Test Assemblies: C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll</li>
+        <li>Start Time: 2/15/2022 6:08:22 PM</li>
+        <li>Duration: 00:00:03.6580969</li>
+        <li>Test Threads: 1</li>
+    </ul>
+
+
+        <h2>Result: 1 failed</h2>
+        <table class="testEvents">
+                <tr>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <td>
+            90%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 179px;" 
+           title="9 succeeded" 
+                   ></a>
+    </td>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 19px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>10 (test executions: 12)</td>
+    <td>9</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+        </table>
+        
+        <h2>Test Timeline Summary</h2>
+
+        <div id="timelineview" class="viewbox">
+            <div class="scrollable">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th class="thread-label" colspan="2">thread</th>
+                    </tr>
+                        <tr class="thread-items-row">
+                            <td class="thread-label" title="Machine: DESKTOP-JSM92F3">#0</td>
+                            <td colspan="1">
+                                <table class="timelineview" cellpadding="0" cellspacing="0">
+                                    <tr>
+
+                                            <td>
+        <a
+            class="bar startupBar" 
+            style="width: 3px;" 
+                title="test thread startup" 
+        >&nbsp;</a>
+    </td>
+
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 28px;" 
+                title="GET user info (in API tests with RestSharp)" 
+                href="#t-1545432725.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 6px;" 
+                title="Create new user (in API tests with RestSharp)" 
+                href="#t1611144531.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 3px;" 
+                title="Field job change user (in API tests with RestSharp)" 
+                href="#t-241791236.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 4px;" 
+                title="Delete field user name (in API tests with RestSharp)" 
+                href="#t-423386757.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 4px;" 
+                title="Delete field user name (in API tests with RestSharp) retry #1" 
+                href="#t-423386757.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 4px;" 
+                title="Delete field user name (in API tests with RestSharp) retry #2" 
+                href="#t-423386757.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 4px;" 
+                title="Register new user (in API tests with RestSharp)" 
+                href="#t1104908998.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 3px;" 
+                title="Unsuccessful register (in API tests with RestSharp)" 
+                href="#t407147434.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 4px;" 
+                title="Get single user (in API tests with RestSharp)" 
+                href="#t-1215077077.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 4px;" 
+                title="Unsuccessful login (in API tests with RestSharp)" 
+                href="#t-1677021012.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 4px;" 
+                title="Successful login (in API tests with RestSharp)" 
+                href="#t1847342205.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 3px;" 
+                title="WorkWithTablesTest (in API tests with RestSharp)" 
+                href="#t139309572.0"
+        >&nbsp;</a>
+    </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="horizontal-scale">
+                        <td>&nbsp;</td>
+                        <td class="scale-10-label">0s</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+    <h2>Test Result View</h2>
+    <div id="testview" class="viewbox">
+        <div id="bar-control">
+            <div id="bar-control-sort">
+                <label>sort by:</label>
+                <span class="option"><input type="radio" name="barSortOrder" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="acttime" />Act Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="order" />Execution</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="rescode" checked="checked" />Result</span>
+                <span class="option"><input type="checkbox" name="barSortDesc" id="barSortDesc" checked="checked" />desc</span>
+            </div>
+            <div id="bar-control-heights">
+                <label>heights:</label>
+                <span class="option"><input type="radio" checked="checked" name="barHeight" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barHeight" value="acttime" />Act Time</span>
+            </div>
+        </div>
+        <table class="vertical-scale" cellpadding="0" cellspacing="0">
+            <tr class="scale-max">
+                <td class="left-padding scale-max-label">&nbsp;</td>
+                <td colspan="12">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-mid">
+                <td class="left-padding scale-mid-label">&nbsp;</td>
+                <td colspan="12">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-min">
+                <td class="left-padding scale-min-label">&nbsp;</td>
+                <td colspan="12">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+        </table>
+        <div class="scrollable">
+            <table class="testview-items" cellpadding="0" cellspacing="0">
+                <tr class="testview-items-row">
+                    <td class="left-padding">&nbsp;</td>
+    <td class="testview-item" 
+        data-sr-exectime="0.3324656" data-sr-rescode="110" data-sr-order="0" data-sr-acttime="0.277">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 60px;"
+            title="GET user info (in API tests with RestSharp)"
+            href="#t-1545432725.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.2737534" data-sr-rescode="110" data-sr-order="1" data-sr-acttime="0.269">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 49px;"
+            title="Create new user (in API tests with RestSharp)"
+            href="#t1611144531.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1947673" data-sr-rescode="110" data-sr-order="2" data-sr-acttime="0.189">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 35px;"
+            title="Field job change user (in API tests with RestSharp)"
+            href="#t-241791236.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1903194" data-sr-rescode="110" data-sr-order="6" data-sr-acttime="0.186">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 34px;"
+            title="Register new user (in API tests with RestSharp)"
+            href="#t1104908998.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1999509" data-sr-rescode="110" data-sr-order="7" data-sr-acttime="0.197">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 36px;"
+            title="Unsuccessful register (in API tests with RestSharp)"
+            href="#t407147434.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1933727" data-sr-rescode="110" data-sr-order="8" data-sr-acttime="0.19">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 35px;"
+            title="Get single user (in API tests with RestSharp)"
+            href="#t-1215077077.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.2313739" data-sr-rescode="110" data-sr-order="9" data-sr-acttime="0.228">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 42px;"
+            title="Unsuccessful login (in API tests with RestSharp)"
+            href="#t-1677021012.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1881572" data-sr-rescode="110" data-sr-order="10" data-sr-acttime="0.178">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 34px;"
+            title="Successful login (in API tests with RestSharp)"
+            href="#t1847342205.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0429664" data-sr-rescode="110" data-sr-order="11" data-sr-acttime="0.04">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 8px;"
+            title="WorkWithTablesTest (in API tests with RestSharp)"
+            href="#t139309572.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.2260386" data-sr-rescode="540" data-sr-order="3" data-sr-acttime="0.207">
+        <a
+            class="bar colorFailed" 
+            style="height: 41px;"
+            title="Delete field user name (in API tests with RestSharp)"
+            href="#t-423386757.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.1904785" data-sr-rescode="540" data-sr-order="4" data-sr-acttime="0.183">
+        <a
+            class="bar colorFailed" 
+            style="height: 34px;"
+            title="Delete field user name (in API tests with RestSharp) retry #1"
+            href="#t-423386757.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.2468103" data-sr-rescode="540" data-sr-order="5" data-sr-acttime="0.243">
+        <a
+            class="bar colorFailed" 
+            style="height: 45px;"
+            title="Delete field user name (in API tests with RestSharp) retry #2"
+            href="#t-423386757.2">&nbsp;</a>
+    </td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+                <tr class="horizontal-scale">
+                    <td class="left-padding">&nbsp;</td>
+                    <td colspan="10">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        
+        
+    <h2>Feature Summary</h2>
+    <table class="testEvents">
+            <tr>
+            <th>Feature</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+
+            <tr>
+                <td><a href="#f-1078581754">API tests with RestSharp</a></td>
+                    <td>
+            75%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 179px;" 
+           title="9 succeeded" 
+                   ></a>
+    </td>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 59px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>10 (test executions: 12)</td>
+    <td>9</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:02.5104542</td>
+
+            </tr>
+    </table>
+
+
+        <a name="error_summary" />
+        <h2>Error Summary</h2>
+        <table class="testEvents">
+                <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <tr>
+                    <td>
+                        <a href="#t-423386757.0">Delete field user name (in RestSharpHomeWork, API tests with RestSharp)</a>
+                            <a href="#t-423386757.1">retry #1</a>
+                            <a href="#t-423386757.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Non-static method requires a target.</div></td>
+                </tr>
+        </table>
+
+        <h2>Scenario Summary</h2>
+            <a name="f-1078581754" />
+            <h3>Feature: API tests with RestSharp</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1545432725.0">Scenario: GET user info</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.3324656</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1611144531.0">Scenario: Create new user</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.2737534</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-241791236.0">Scenario: Field job change user</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1947673</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-423386757.0">Scenario: Delete field user name</a>
+            <a href="#t-423386757.1">retry #1</a>
+            <a href="#t-423386757.2">retry #2</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.6633274</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1104908998.0">Scenario: Register new user</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1903194</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t407147434.0">Scenario: Unsuccessful register</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1999509</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1215077077.0">Scenario: Get single user</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1933727</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1677021012.0">Scenario: Unsuccessful login</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.2313739</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1847342205.0">Scenario: Successful login</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1881572</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t139309572.0">Scenario: WorkWithTablesTest</a>
+
+                        </td>
+                        
+                            <td>
+            100%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSucceeded" 
+           style="width: 199px;" 
+           title="1 succeeded" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0429664</td>
+
+                        
+                    </tr>
+            </table>
+
+        <h2>Execution Details</h2>
+            <a name="t-1545432725.0" />
+            <h3>Scenario: GET user info (in RestSharpHomeWork, API tests with RestSharp)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:23 PM</li>
+                <li>Execution time (sec): 0.3324656</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User makes GET user info request</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - GET user info] -->
+                            <pre class="log">done: UserSteps.WhenUserMakesGetUserInfoRequest() (0.3s)</pre>
+                        </td>
+                        <td>Succeeded in 0.277s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - GET user info] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThat() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.013s</td>
+                    </tr>
+            </table>
+            <a name="t1611144531.0" />
+            <h3>Scenario: Create new user (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:23 PM</li>
+                <li>Execution time (sec): 0.2737534</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User create new user with name &#39;morpheus&#39; and job &#39;leader&#39;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Create new user] -->
+                            <pre class="log">done: UserSteps.WhenUserCreateNewUserWithNameAndJob(&quot;morpheus&quot;, &quot;leader&quot;) (0.3s)</pre>
+                        </td>
+                        <td>Succeeded in 0.269s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that name user equal</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Create new user] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatNameUserEqual() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t-241791236.0" />
+            <h3>Scenario: Field job change user (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:23 PM</li>
+                <li>Execution time (sec): 0.1947673</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User changes the job field value &#39;Senior Junior Automation DevOps&#39;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Field job change user] -->
+                            <pre class="log">done: UserSteps.WhenUserChangesTheJobFieldValue(&quot;Senior Junior Aut...&quot;) (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.189s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that field value has been change</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Field job change user] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatFieldValueHasBeenChange() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.003s</td>
+                    </tr>
+            </table>
+            <a name="t-423386757.0" />
+            <h3>Scenario: Delete field user name (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 2/15/2022 6:08:24 PM</li>
+                <li>Execution time (sec): 0.2260386</li>
+                <li>Thread: #0</li>
+                <li>Error: Non-static method requires a target.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User delete field name &#39;morpheus&#39; value</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Delete field user name] -->
+                            <pre class="log">error: Non-static method requires a target. (0.2s)</pre>
+                                <div class="errorMessage">Non-static method requires a target.</div>
+                                <pre class="stackTrace">System.Reflection.TargetException: Non-static method requires a target.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at AutomationUtils.Extensions.ExtensionMethods.CopyPropertiesTo[T](T source, T dest)
+   at RestSharpHomeWork.Steps.UserSteps.WhenUserDeleteFieldNameValue(String nameUser) in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Steps\UserSteps.cs:line 93
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 581
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 494
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 250
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.ScenarioCleanup()
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.DeleteFieldUserName() in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Feautures\BaseApiScenario.feature:line 18
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.207s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that value in field was removed</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Delete field user name] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.017s</td>
+                    </tr>
+            </table>
+            <a name="t-423386757.1" />
+            <h3>Scenario: Delete field user name (in RestSharpHomeWork, API tests with RestSharp) retry #1</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 2/15/2022 6:08:24 PM</li>
+                <li>Execution time (sec): 0.1904785</li>
+                <li>Thread: #0</li>
+                <li>Error: Non-static method requires a target.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User delete field name &#39;morpheus&#39; value</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Delete field user name] -->
+                            <pre class="log">error: Non-static method requires a target. (0.2s)</pre>
+                                <div class="errorMessage">Non-static method requires a target.</div>
+                                <pre class="stackTrace">System.Reflection.TargetException: Non-static method requires a target.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at AutomationUtils.Extensions.ExtensionMethods.CopyPropertiesTo[T](T source, T dest)
+   at RestSharpHomeWork.Steps.UserSteps.WhenUserDeleteFieldNameValue(String nameUser) in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Steps\UserSteps.cs:line 93
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 581
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 494
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 250
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.ScenarioCleanup()
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.DeleteFieldUserName() in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Feautures\BaseApiScenario.feature:line 18
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.183s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that value in field was removed</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Delete field user name] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t-423386757.2" />
+            <h3>Scenario: Delete field user name (in RestSharpHomeWork, API tests with RestSharp) retry #2</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 2/15/2022 6:08:24 PM</li>
+                <li>Execution time (sec): 0.2468103</li>
+                <li>Thread: #0</li>
+                <li>Error: Non-static method requires a target.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User delete field name &#39;morpheus&#39; value</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Delete field user name] -->
+                            <pre class="log">error: Non-static method requires a target. (0.2s)</pre>
+                                <div class="errorMessage">Non-static method requires a target.</div>
+                                <pre class="stackTrace">System.Reflection.TargetException: Non-static method requires a target.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   at AutomationUtils.Extensions.ExtensionMethods.CopyPropertiesTo[T](T source, T dest)
+   at RestSharpHomeWork.Steps.UserSteps.WhenUserDeleteFieldNameValue(String nameUser) in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Steps\UserSteps.cs:line 93
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 581
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 494
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 250
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.ScenarioCleanup()
+   at RestSharpHomeWork.Feautures.APITestsWithRestSharpFeature.DeleteFieldUserName() in C:\Users\Danya\source\repos\RestSharpHomeWork\RestSharpHomeWork\Feautures\BaseApiScenario.feature:line 18
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.243s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that value in field was removed</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Delete field user name] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t1104908998.0" />
+            <h3>Scenario: Register new user (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:24 PM</li>
+                <li>Execution time (sec): 0.1903194</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User new register with email &#39;eve.holt@reqres.in&#39; and password &#39;pistol&#39;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Register new user] -->
+                            <pre class="log">done: UserSteps.WhenUserNewRegisterWithEmail(&quot;eve.holt@reqres.in&quot;, &quot;pistol&quot;) (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.186s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that new user registered</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Register new user] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatNewUserRegistered() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t407147434.0" />
+            <h3>Scenario: Unsuccessful register (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:24 PM</li>
+                <li>Execution time (sec): 0.1999509</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User enter wrong email &#39;sydney@fife&#39;</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Unsuccessful register] -->
+                            <pre class="log">done: UserSteps.WhenUserEnterWrongEmail(&quot;sydney@fife&quot;) (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.197s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that user take a error</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Unsuccessful register] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatUserTakeAError() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.001s</td>
+                    </tr>
+            </table>
+            <a name="t-1215077077.0" />
+            <h3>Scenario: Get single user (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:25 PM</li>
+                <li>Execution time (sec): 0.1933727</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User get request for single user</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Get single user] -->
+                            <pre class="log">done: UserSteps.WhenUserGetRequestForSingleUser() (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.19s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that user get correct info</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Get single user] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatUserGetCorrectInfo() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t-1677021012.0" />
+            <h3>Scenario: Unsuccessful login (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:25 PM</li>
+                <li>Execution time (sec): 0.2313739</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User enter incorrect email &#39;peter@klaven&#39; field for login</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Unsuccessful login] -->
+                            <pre class="log">done: UserSteps.WhenUserEnterWrongValueInEmailField(&quot;peter@klaven&quot;) (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.228s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that user get error</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Unsuccessful login] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatUserGetError() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t1847342205.0" />
+            <h3>Scenario: Successful login (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:25 PM</li>
+                <li>Execution time (sec): 0.1881572</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When User enter correct email &#39;eve.holt@reqres.in&#39; and password &#39;cityslicka&#39; for login</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Successful login] -->
+                            <pre class="log">done: UserSteps.WhenUserEnterCorrectEmail(&quot;eve.holt@reqres.in&quot;, &quot;cityslicka&quot;) (0.2s)</pre>
+                        </td>
+                        <td>Succeeded in 0.178s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Verify that get a token for success registration</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Successful login] -->
+                            <pre class="log">done: UserSteps.ThenVerifyThatGetATokenForSuccessRegistration() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.005s</td>
+                    </tr>
+            </table>
+            <a name="t139309572.0" />
+            <h3>Scenario: WorkWithTablesTest (in RestSharpHomeWork, API tests with RestSharp)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 2/15/2022 6:08:25 PM</li>
+                <li>Execution time (sec): 0.0429664</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When Test step for work with tables
+  --- table step argument ---
+  | zlp                 | notZlp                 | somethingElse        |
+  | contentForZlpColumn | contentForNotZlpColumn | somethingElseContent |</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - WorkWithTablesTest] -->
+                            <pre class="log">done: UserSteps.WhenTestStepForWorkWithTables(&lt;table&gt;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.04s</td>
+                    </tr>
+            </table>
+	</body>
+</html>

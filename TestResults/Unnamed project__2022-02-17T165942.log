@@ -1,0 +1,277 @@
+﻿2022-02-17T16:59:42.1262835+02:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2022-02-17T16:59:42.1263973+02:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.9.31 in Framework net50 in x64 mode execution started
+2022-02-17T16:59:42.1264050+02:00;VSTestExecutionThread;Info;TestAdapter Location: C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2022-02-17T16:59:42.1282019+02:00;VSTestExecutionThread;Info;Current UserName: 'Danya', MachineName: 'DESKTOP-JSM92F3'
+2022-02-17T16:59:42.1596682+02:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-17T16:59:42.1605417+02:00;VSTestExecutionThread;Info;Output folder configured to "C:\Users\Danya\source\repos\RestSharpHomeTask\TestResults" (default)
+2022-02-17T16:59:42.1608295+02:00;VSTestExecutionThread;Info;Profile: 
+2022-02-17T16:59:42.2482338+02:00;VSTestExecutionThread;Info;Log file path: C:\Users\Danya\source\repos\RestSharpHomeTask\TestResults\Unnamed project__2022-02-17T165942.log
+2022-02-17T16:59:42.2569754+02:00;Thread#13;Info;Checking activation
+2022-02-17T16:59:42.4147089+02:00;Thread#13;Info;Activated.
+2022-02-17T16:59:42.4149237+02:00;Thread#13;Info;Activation check completed
+2022-02-17T16:59:42.4150029+02:00;Thread#13;Info;Starting test run
+2022-02-17T16:59:42.5236972+02:00;Thread#13;Info;Discovering target: Default
+2022-02-17T16:59:42.5238602+02:00;Thread#13;Info;Discovering tests from assembly: C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-17T16:59:42.6545842+02:00;Thread#13;Info;Discovered tests from assembly: C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-17T16:59:42.6558972+02:00:Test Suite Dump
+2022-02-17T16:59:42.6579308+02:00:#0: Unnamed project/ - 
+2022-02-17T16:59:42.6579770+02:00:#1: Default - 
+2022-02-17T16:59:42.6579839+02:00:#2: RestSharpHomeWork - 
+2022-02-17T16:59:42.6579880+02:00:#3: API tests with RestSharp - 
+2022-02-17T16:59:42.6597094+02:00:#4: GET user info - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:GET+user+info
+2022-02-17T16:59:42.6597514+02:00:#5: Create new user - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Create+new+user
+2022-02-17T16:59:42.6597592+02:00:#6: Field job change user - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Field+job+change+user
+2022-02-17T16:59:42.6597661+02:00:#7: Delete field user name - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Delete+field+user+name
+2022-02-17T16:59:42.6597706+02:00:#8: Register new user - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Register+new+user
+2022-02-17T16:59:42.6597757+02:00:#9: Get single user - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Get+single+user
+2022-02-17T16:59:42.6597800+02:00:#10: Successful login - TestAssembly:RestSharpHomeWork/Feature:API+tests+with+RestSharp/Scenario:Successful+login
+2022-02-17T16:59:42.6598128+02:00:End: Test Suite Dump
+2022-02-17T16:59:42.6747582+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:42.6762867+02:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2022-02-17T16:59:42.6763422+02:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2022-02-17T16:59:42.6791473+02:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:42.6791642+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:42.6791659+02:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:42.6791689+02:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2022-02-17T16:59:42.6797275+02:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2022-02-17T16:59:42.6807713+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:42.6828333+02:00:Thread #0: creating new test thread executor for RestSharpHomeWork, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2022-02-17T16:59:42.6849036+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2022-02-17T16:59:42.6850686+02:00:Thread #0: Creating test assembly executor for execution model OutProc
+2022-02-17T16:59:42.6940649+02:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.OutOfProc.StreamJsonRPC.OutOfProcessTestAssemblyExecutorHost to execute tests
+2022-02-17T16:59:42.6961811+02:00:starting Out Of Process Executor
+2022-02-17T16:59:42.7046967+02:00:Assembly resolving Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-17T16:59:42.7136185+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' from .deps.json file
+2022-02-17T16:59:42.7136439+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' from .deps.json
+2022-02-17T16:59:42.7145911+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-17T16:59:42.7149321+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.dll'
+2022-02-17T16:59:42.7150349+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.exe'
+2022-02-17T16:59:42.7150773+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-17T16:59:42.7152750+02:00:TargetFramework: .NETCoreApp,Version=v5.0
+2022-02-17T16:59:42.7158775+02:00:Tfm: netcoreapp5.0
+2022-02-17T16:59:42.7158922+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-17T16:59:42.7158939+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.dll'
+2022-02-17T16:59:42.7159768+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.exe'
+2022-02-17T16:59:42.7160333+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-17T16:59:42.7293484+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-17T16:59:42.7293696+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-17T16:59:42.7294589+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-17T16:59:42.7295070+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-17T16:59:42.7296946+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-17T16:59:42.7297036+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-17T16:59:42.7297565+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-17T16:59:42.7298080+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-17T16:59:42.7299347+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-17T16:59:42.7299423+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Validation.dll'
+2022-02-17T16:59:42.7299888+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Validation.exe'
+2022-02-17T16:59:42.7300298+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-17T16:59:42.7391432+02:00:Starting callback TCP Rpc server
+2022-02-17T16:59:42.7600369+02:00:Asynchronously starting background TCP Rpc Server on port 32768
+2022-02-17T16:59:42.7601607+02:00:Started callback TCP Rpc server on port 32768
+2022-02-17T16:59:42.7601749+02:00:Starting logger TCP Rpc server
+2022-02-17T16:59:42.7619438+02:00:Asynchronously starting background TCP Rpc Server on port 32771
+2022-02-17T16:59:42.7620011+02:00:Started logger TCP Rpc server on port 32771
+2022-02-17T16:59:42.8473934+02:00;Thread#13;Info;Executor full path resolved: C:\Program Files\dotnet\dotnet.exe
+2022-02-17T16:59:42.8499522+02:00;Thread#13;Info;Starting SpecFlow+ Runner executor process with attached debugger...
+2022-02-17T16:59:42.8849119+02:00;Thread#13;Info;Successfully started SpecFlow+ Runner executor process
+2022-02-17T16:59:42.8910433+02:00:Out of Process Executor 5752 started
+2022-02-17T16:59:42.8910632+02:00:Waiting for endpoint
+2022-02-17T16:59:43.6330569+02:00:Assembly resolving Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-17T16:59:43.6330927+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' from .deps.json file
+2022-02-17T16:59:43.6331024+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' from .deps.json
+2022-02-17T16:59:43.6331082+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-17T16:59:43.6331104+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.dll'
+2022-02-17T16:59:43.6331632+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.exe'
+2022-02-17T16:59:43.6332085+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0'
+2022-02-17T16:59:43.6332131+02:00:TargetFramework: .NETCoreApp,Version=v5.0
+2022-02-17T16:59:43.6332438+02:00:Tfm: netcoreapp5.0
+2022-02-17T16:59:43.6332492+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-17T16:59:43.6332513+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.dll'
+2022-02-17T16:59:43.6333296+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.exe'
+2022-02-17T16:59:43.6333829+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2022-02-17T16:59:43.6339901+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-17T16:59:43.6339993+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-17T16:59:43.6340732+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-17T16:59:43.6341197+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.13'
+2022-02-17T16:59:43.6342716+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-17T16:59:43.6342776+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-17T16:59:43.6343308+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-17T16:59:43.6343776+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.13'
+2022-02-17T16:59:43.6345085+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-17T16:59:43.6345130+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Threading.dll'
+2022-02-17T16:59:43.6345567+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13\Microsoft.VisualStudio.Threading.exe'
+2022-02-17T16:59:43.6345972+02:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.13'
+2022-02-17T16:59:43.9928795+02:00:Remote executor port received: 32772
+2022-02-17T16:59:43.9931867+02:00:Creating executor TCP client on port 32772
+2022-02-17T16:59:43.9935433+02:00:Created executor TCP client on port 32772
+2022-02-17T16:59:43.9935501+02:00:Connecting to remote executor TCP server
+2022-02-17T16:59:43.9945569+02:00:Connected remote executor TCP server
+2022-02-17T16:59:43.9950046+02:00:trying to connect to Out of Process Executor the 1 attempt
+2022-02-17T16:59:43.9950155+02:00:Connection to Out of Process Executor established in the 1 attempt
+2022-02-17T16:59:44.1500750+02:00:2022-02-17T16:59:44.1482475+02:00:OutOfProcessTestAssemblyExecutor: initialized for C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll on test thread #0
+2022-02-17T16:59:44.1581062+02:00:Endpoint 5752 started
+2022-02-17T16:59:44.1745479+02:00:2022-02-17T16:59:44.1738780+02:00:OutOfProcessTestAssemblyExecutor: running tests...
+2022-02-17T16:59:44.2943601+02:00:2022-02-17T16:59:44.2936875+02:00:Assembly resolving TechTalk.SpecFlow, Version=3.9.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41
+2022-02-17T16:59:44.2980844+02:00:2022-02-17T16:59:44.2974623+02:00:[AssemblyCache] Trying to resolve 'TechTalk.SpecFlow' from .deps.json file
+2022-02-17T16:59:44.3048735+02:00:2022-02-17T16:59:44.3041587+02:00:[AssemblyCache] Resolved 'TechTalk.SpecFlow' to 'C:\Users\Danya\.nuget\packages\specflow\3.9.50\lib\netstandard2.0\TechTalk.SpecFlow.dll'
+2022-02-17T16:59:44.4327818+02:00:2022-02-17T16:59:44.4320661+02:00:Thread#0:T:-> Loading plugin C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\RestSharpHomeWork.dll
+2022-02-17T16:59:44.4345774+02:00:2022-02-17T16:59:44.4340404+02:00:Assembly resolving Microsoft.Extensions.DependencyModel, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2022-02-17T16:59:44.4355346+02:00:2022-02-17T16:59:44.4350901+02:00:[AssemblyCache] Trying to resolve 'Microsoft.Extensions.DependencyModel' from .deps.json file
+2022-02-17T16:59:44.4369100+02:00:2022-02-17T16:59:44.4363799+02:00:[AssemblyCache] Resolved 'Microsoft.Extensions.DependencyModel' to 'C:\Users\Danya\.nuget\packages\microsoft.extensions.dependencymodel\1.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll'
+2022-02-17T16:59:44.4890687+02:00:2022-02-17T16:59:44.4882567+02:00:Assembly resolving Microsoft.DotNet.PlatformAbstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2022-02-17T16:59:44.4904099+02:00:2022-02-17T16:59:44.4898366+02:00:[AssemblyCache] Trying to resolve 'Microsoft.DotNet.PlatformAbstractions' from .deps.json file
+2022-02-17T16:59:44.4915263+02:00:2022-02-17T16:59:44.4911683+02:00:[AssemblyCache] Resolved 'Microsoft.DotNet.PlatformAbstractions' to 'C:\Users\Danya\.nuget\packages\microsoft.dotnet.platformabstractions\1.0.3\lib\netstandard1.3\Microsoft.DotNet.PlatformAbstractions.dll'
+2022-02-17T16:59:44.5046912+02:00:2022-02-17T16:59:44.5034395+02:00:Thread#0:T:-> Loading plugin C:\Users\Danya\source\repos\RestSharpHomeTask\RestSharpHomeWork\bin\Debug\net5.0\SpecRun.Runtime.SpecFlowPlugin.dll
+2022-02-17T16:59:44.5210859+02:00:2022-02-17T16:59:44.5203770+02:00:Thread#0:T:-> Using default config
+2022-02-17T16:59:44.5307349+02:00:2022-02-17T16:59:44.5301090+02:00:Assembly resolving AutomationUtils, Version=1.1.79.0, Culture=neutral, PublicKeyToken=null
+2022-02-17T16:59:44.5322206+02:00:2022-02-17T16:59:44.5317738+02:00:[AssemblyCache] Trying to resolve 'AutomationUtils' from .deps.json file
+2022-02-17T16:59:44.5333253+02:00:2022-02-17T16:59:44.5329401+02:00:[AssemblyCache] Resolved 'AutomationUtils' to 'C:\Users\Danya\.nuget\packages\automationutils\1.1.79\lib\netcoreapp3.1\AutomationUtils.dll'
+2022-02-17T16:59:44.5413818+02:00:2022-02-17T16:59:44.5406852+02:00:Assembly resolving Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2022-02-17T16:59:44.5425409+02:00:2022-02-17T16:59:44.5421772+02:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.TestPlatform.ObjectModel' from .deps.json file
+2022-02-17T16:59:44.5436041+02:00:2022-02-17T16:59:44.5432287+02:00:[AssemblyCache] Resolved 'Microsoft.VisualStudio.TestPlatform.ObjectModel' to 'C:\Users\Danya\.nuget\packages\microsoft.testplatform.objectmodel\17.0.0\lib\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll'
+2022-02-17T16:59:44.5787090+02:00:2022-02-17T16:59:44.5776503+02:00:Assembly resolving SpecFlow.Internal.Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41
+2022-02-17T16:59:44.5799987+02:00:2022-02-17T16:59:44.5794543+02:00:[AssemblyCache] Trying to resolve 'SpecFlow.Internal.Json' from .deps.json file
+2022-02-17T16:59:44.5811083+02:00:2022-02-17T16:59:44.5807270+02:00:[AssemblyCache] Resolved 'SpecFlow.Internal.Json' to 'C:\Users\Danya\.nuget\packages\specflow.internal.json\1.0.8\lib\netstandard2.0\SpecFlow.Internal.Json.dll'
+2022-02-17T16:59:44.6893784+02:00:Thread#0: Test #4/0 is started on thread #0
+2022-02-17T16:59:44.7033715+02:00:2022-02-17T16:59:44.7026900+02:00:Thread#0:B:When User makes GET user info request
+2022-02-17T16:59:44.7171339+02:00:2022-02-17T16:59:44.7164342+02:00:Assembly resolving RestSharp, Version=107.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75
+2022-02-17T16:59:44.7184097+02:00:2022-02-17T16:59:44.7179100+02:00:[AssemblyCache] Trying to resolve 'RestSharp' from .deps.json file
+2022-02-17T16:59:44.7194515+02:00:2022-02-17T16:59:44.7191181+02:00:[AssemblyCache] Resolved 'RestSharp' to 'C:\Users\Danya\.nuget\packages\restsharp\107.2.1\lib\net5.0\RestSharp.dll'
+2022-02-17T16:59:44.7274436+02:00:2022-02-17T16:59:44.7268629+02:00:Assembly resolving Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+2022-02-17T16:59:44.7283646+02:00:2022-02-17T16:59:44.7280326+02:00:[AssemblyCache] Trying to resolve 'Newtonsoft.Json' from .deps.json file
+2022-02-17T16:59:44.7293403+02:00:2022-02-17T16:59:44.7289878+02:00:[AssemblyCache] Resolved 'Newtonsoft.Json' to 'C:\Users\Danya\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll'
+2022-02-17T16:59:44.8176823+02:00:2022-02-17T16:59:44.8170310+02:00:Assembly resolving Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+2022-02-17T16:59:45.1781476+02:00:2022-02-17T16:59:45.1771830+02:00:Thread#0:T:done: UserSteps.WhenUserMakesGetUserInfoRequest() (0.5s)
+2022-02-17T16:59:45.1803655+02:00:2022-02-17T16:59:45.1797522+02:00:Thread#0:B:Then Verify that number users
+2022-02-17T16:59:45.1823946+02:00:2022-02-17T16:59:45.1819162+02:00:Assembly resolving nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb
+2022-02-17T16:59:45.1833503+02:00:2022-02-17T16:59:45.1829885+02:00:[AssemblyCache] Trying to resolve 'nunit.framework' from .deps.json file
+2022-02-17T16:59:45.1843181+02:00:2022-02-17T16:59:45.1839566+02:00:[AssemblyCache] Resolved 'nunit.framework' to 'C:\Users\Danya\.nuget\packages\nunit\3.13.2\lib\netstandard2.0\nunit.framework.dll'
+2022-02-17T16:59:45.2016492+02:00:2022-02-17T16:59:45.2010132+02:00:Thread#0:T:done: UserSteps.ThenVerifyThat() (0.0s)
+2022-02-17T16:59:45.2107754+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:45.2107962+02:00:Thread#:Scheduler: testitem #5 from normal test queue 
+2022-02-17T16:59:45.2107987+02:00:Thread#0:Scheduler: considering testitem #5 for thread 0
+2022-02-17T16:59:45.2108664+02:00:Thread#0:TestItem#5:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:45.2108688+02:00:Thread#0:TestItem#5:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:45.2108699+02:00:Thread#0:TestItem#5:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:45.2108712+02:00:Thread#0:Scheduler: using testitem #5 for thread 0
+2022-02-17T16:59:45.2108879+02:00:Thread#0:Scheduler: Test #5 is scheduled for thread
+2022-02-17T16:59:45.2109099+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:45.2461828+02:00:Thread#0: Test #4/0 is finished on thread #0 as Succeeded within 0.5557514 seconds
+2022-02-17T16:59:45.2490305+02:00:Thread#0: Test #5/0 is started on thread #0
+2022-02-17T16:59:45.2513916+02:00:2022-02-17T16:59:45.2507524+02:00:Thread#0:B:When User create new user with name 'morpheus' and job 'leader'
+2022-02-17T16:59:45.5451060+02:00:2022-02-17T16:59:45.5440366+02:00:Thread#0:T:done: UserSteps.WhenUserCreateNewUserWithNameAndJob("morpheus", "leader") (0.3s)
+2022-02-17T16:59:45.5463211+02:00:2022-02-17T16:59:45.5459006+02:00:Thread#0:B:Then Verify that name user 'morpheus' equal
+2022-02-17T16:59:45.5484982+02:00:2022-02-17T16:59:45.5477918+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatNameUserEqual("morpheus") (0.0s)
+2022-02-17T16:59:45.5506695+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:45.5506798+02:00:Thread#:Scheduler: testitem #6 from normal test queue 
+2022-02-17T16:59:45.5507238+02:00:Thread#0:Scheduler: considering testitem #6 for thread 0
+2022-02-17T16:59:45.5507896+02:00:Thread#0:TestItem#6:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:45.5507932+02:00:Thread#0:TestItem#6:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:45.5507944+02:00:Thread#0:TestItem#6:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:45.5507963+02:00:Thread#0:Scheduler: using testitem #6 for thread 0
+2022-02-17T16:59:45.5508078+02:00:Thread#0:Scheduler: Test #6 is scheduled for thread
+2022-02-17T16:59:45.5509035+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:45.5526229+02:00:Thread#0: Test #5/0 is finished on thread #0 as Succeeded within 0.3033782 seconds
+2022-02-17T16:59:45.5537656+02:00:Thread#0: Test #6/0 is started on thread #0
+2022-02-17T16:59:45.5561994+02:00:2022-02-17T16:59:45.5554286+02:00:Thread#0:B:When User changes the job field value 'Senior Junior Automation DevOps'
+2022-02-17T16:59:45.7558903+02:00:2022-02-17T16:59:45.7545088+02:00:Thread#0:T:done: UserSteps.WhenUserChangesTheJobFieldValue("Senior Junior Aut...") (0.2s)
+2022-02-17T16:59:45.7575203+02:00:2022-02-17T16:59:45.7568787+02:00:Thread#0:B:Then Verify that field value has been change on 'Senior Junior Automation DevOps'
+2022-02-17T16:59:45.7591977+02:00:2022-02-17T16:59:45.7587976+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatFieldValueHasBeenChange("Senior Junior Aut...") (0.0s)
+2022-02-17T16:59:45.7608878+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:45.7609013+02:00:Thread#:Scheduler: testitem #7 from normal test queue 
+2022-02-17T16:59:45.7609566+02:00:Thread#0:Scheduler: considering testitem #7 for thread 0
+2022-02-17T16:59:45.7610226+02:00:Thread#0:TestItem#7:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:45.7610342+02:00:Thread#0:TestItem#7:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:45.7610357+02:00:Thread#0:TestItem#7:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:45.7610380+02:00:Thread#0:Scheduler: using testitem #7 for thread 0
+2022-02-17T16:59:45.7610909+02:00:Thread#0:Scheduler: Test #7 is scheduled for thread
+2022-02-17T16:59:45.7610992+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:45.7625396+02:00:Thread#0: Test #6/0 is finished on thread #0 as Succeeded within 0.2087461 seconds
+2022-02-17T16:59:45.7635875+02:00:Thread#0: Test #7/0 is started on thread #0
+2022-02-17T16:59:45.7655366+02:00:2022-02-17T16:59:45.7651012+02:00:Thread#0:B:When User delete field name 'Weaver' value
+2022-02-17T16:59:45.9963077+02:00:2022-02-17T16:59:45.9947424+02:00:Thread#0:T:done: UserSteps.WhenUserDeleteFieldNameValue("Weaver") (0.2s)
+2022-02-17T16:59:45.9991852+02:00:2022-02-17T16:59:45.9983004+02:00:Thread#0:B:Then Verify that value in field was removed
+2022-02-17T16:59:46.0029083+02:00:2022-02-17T16:59:46.0019211+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatValueInFieldWasRemoved() (0.0s)
+2022-02-17T16:59:46.0056423+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:46.0057016+02:00:Thread#:Scheduler: testitem #8 from normal test queue 
+2022-02-17T16:59:46.0057485+02:00:Thread#0:Scheduler: considering testitem #8 for thread 0
+2022-02-17T16:59:46.0058079+02:00:Thread#0:TestItem#8:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:46.0058124+02:00:Thread#0:TestItem#8:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:46.0058215+02:00:Thread#0:TestItem#8:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:46.0058233+02:00:Thread#0:Scheduler: using testitem #8 for thread 0
+2022-02-17T16:59:46.0058356+02:00:Thread#0:Scheduler: Test #8 is scheduled for thread
+2022-02-17T16:59:46.0058473+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:46.0075533+02:00:Thread#0: Test #7/0 is finished on thread #0 as Succeeded within 0.2439316 seconds
+2022-02-17T16:59:46.0087549+02:00:Thread#0: Test #8/0 is started on thread #0
+2022-02-17T16:59:46.0112878+02:00:2022-02-17T16:59:46.0104904+02:00:Thread#0:B:When User new register with email 'eve.holt@reqres.in' and password 'pistol'
+2022-02-17T16:59:46.2851197+02:00:2022-02-17T16:59:46.2842248+02:00:Thread#0:T:done: UserSteps.WhenUserNewRegisterWithEmail("eve.holt@reqres.in", "pistol") (0.3s)
+2022-02-17T16:59:46.2866966+02:00:2022-02-17T16:59:46.2860980+02:00:Thread#0:B:Then Verify that new user registered and got my Id '4'
+2022-02-17T16:59:46.2885387+02:00:2022-02-17T16:59:46.2880983+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatNewUserRegistered("4") (0.0s)
+2022-02-17T16:59:46.2905111+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:46.2905266+02:00:Thread#:Scheduler: testitem #9 from normal test queue 
+2022-02-17T16:59:46.2905751+02:00:Thread#0:Scheduler: considering testitem #9 for thread 0
+2022-02-17T16:59:46.2906569+02:00:Thread#0:TestItem#9:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:46.2907122+02:00:Thread#0:TestItem#9:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:46.2907195+02:00:Thread#0:TestItem#9:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:46.2907228+02:00:Thread#0:Scheduler: using testitem #9 for thread 0
+2022-02-17T16:59:46.2907521+02:00:Thread#0:Scheduler: Test #9 is scheduled for thread
+2022-02-17T16:59:46.2907615+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:46.2923869+02:00:Thread#0: Test #8/0 is finished on thread #0 as Succeeded within 0.2835369 seconds
+2022-02-17T16:59:46.2938941+02:00:Thread#0: Test #9/0 is started on thread #0
+2022-02-17T16:59:46.2958519+02:00:2022-02-17T16:59:46.2953105+02:00:Thread#0:B:When User get request for single user
+2022-02-17T16:59:46.3592028+02:00:2022-02-17T16:59:46.3585146+02:00:Thread#0:T:done: UserSteps.WhenUserGetRequestForSingleUser() (0.1s)
+2022-02-17T16:59:46.3608087+02:00:2022-02-17T16:59:46.3602984+02:00:Thread#0:B:Then Verify that user get correct info about my email 'janet.weaver@reqres.in'
+2022-02-17T16:59:46.3625152+02:00:2022-02-17T16:59:46.3621488+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatUserGetCorrectInfo("janet.weaver@reqr...") (0.0s)
+2022-02-17T16:59:46.3642942+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:46.3643146+02:00:Thread#:Scheduler: testitem #10 from normal test queue 
+2022-02-17T16:59:46.3643186+02:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2022-02-17T16:59:46.3643708+02:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2022-02-17T16:59:46.3643741+02:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2022-02-17T16:59:46.3643754+02:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2022-02-17T16:59:46.3643770+02:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2022-02-17T16:59:46.3644222+02:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2022-02-17T16:59:46.3644297+02:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2022-02-17T16:59:46.3657209+02:00:Thread#0: Test #9/0 is finished on thread #0 as Succeeded within 0.0717516 seconds
+2022-02-17T16:59:46.3666495+02:00:Thread#0: Test #10/0 is started on thread #0
+2022-02-17T16:59:46.3685139+02:00:2022-02-17T16:59:46.3680851+02:00:Thread#0:B:When User enter correct email 'eve.holt@reqres.in' and password 'cityslicka' for login
+2022-02-17T16:59:46.5600267+02:00:2022-02-17T16:59:46.5593184+02:00:Thread#0:T:done: UserSteps.WhenUserEnterCorrectEmail("eve.holt@reqres.in", "cityslicka") (0.2s)
+2022-02-17T16:59:46.5613898+02:00:2022-02-17T16:59:46.5609132+02:00:Thread#0:B:Then Verify that get a token 'QpwL5tke4Pnpja7X4' for success registration
+2022-02-17T16:59:46.5631120+02:00:2022-02-17T16:59:46.5626367+02:00:Thread#0:T:done: UserSteps.ThenVerifyThatGetATokenForSuccessRegistration("QpwL5tke4Pnpja7X4") (0.0s)
+2022-02-17T16:59:46.5649341+02:00:Thread#0:Scheduler: get next test for thread 0
+2022-02-17T16:59:46.5649502+02:00:Thread#:Scheduler: at the end of normal test queue
+2022-02-17T16:59:46.5649939+02:00:Thread#0:Scheduler: enumerator for thread is at end
+2022-02-17T16:59:46.5649982+02:00:Thread#0:Scheduler: No more tests for thread
+2022-02-17T16:59:46.5675214+02:00:Thread#0: Test #10/0 is finished on thread #0 as Succeeded within 0.2008415 seconds
+2022-02-17T16:59:46.5743295+02:00:2022-02-17T16:59:46.5739017+02:00:Got Deinitialize Signal
+2022-02-17T16:59:46.5789134+02:00:RPC Client disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Stream has been disposed
+Exception:<none>
+2022-02-17T16:59:46.5803532+02:00:RPC Server disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Reached end of stream.
+Exception:<none>
+2022-02-17T16:59:46.5816302+02:00:RPC Server disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Stream has been disposed
+Exception:<none>
+2022-02-17T16:59:46.5887368+02:00:Thread#-1:Scheduler: get next test for thread -1
+2022-02-17T16:59:46.5887504+02:00:Thread#:Scheduler: at the end of normal test queue
+2022-02-17T16:59:46.5887520+02:00:Thread#-1:Scheduler: enumerator for thread is at end
+2022-02-17T16:59:46.5904864+02:00;Thread#13;Info;test run finished
+2022-02-17T16:59:46.5905916+02:00;Thread#13;Info;publishing test results
+2022-02-17T16:59:46.5906894+02:00;Thread#13;Info;Not publishing results.
+2022-02-17T16:59:46.5907416+02:00;Thread#13;Info;test results published
+2022-02-17T16:59:46.5907785+02:00;Thread#13;Info;generating reports
+2022-02-17T16:59:46.6379945+02:00;Thread#13;Info;Starting external report generation process
+2022-02-17T16:59:47.9755947+02:00;Thread#13;Info;Successfully generated reports.
+2022-02-17T16:59:47.9774520+02:00;Thread#13;Info;Successfully generated reports
+2022-02-17T16:59:47.9874126+02:00:Total: 7
+2022-02-17T16:59:47.9887683+02:00:Succeeded: 7
+2022-02-17T16:59:47.9889958+02:00:Ignored: 0
+2022-02-17T16:59:47.9891833+02:00:Pending: 0
+2022-02-17T16:59:47.9891888+02:00:Skipped: 0
+2022-02-17T16:59:47.9893738+02:00:Failed: 0
+2022-02-17T16:59:47.9948293+02:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2022-02-17T16:59:47.9948801+02:00;VSTestExecutionThread;Info;adding Test Execution Report 'C:\Users\Danya\source\repos\RestSharpHomeTask\TestResults\Unnamed project__2022-02-17T165942.html'
+========== End of log file ==========

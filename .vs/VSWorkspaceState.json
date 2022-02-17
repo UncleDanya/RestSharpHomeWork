@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\RestSharpHomeWork",
+    "\\RestSharpHomeWork\\Api",
+    "\\RestSharpHomeWork\\bin\\Release",
+    "\\RestSharpHomeWork\\DTO",
+    "\\RestSharpHomeWork\\Feautures"
   ],
+  "SelectedNode": "\\RestSharpHomeWork.sln",
   "PreviewInSolutionExplorer": false
 }

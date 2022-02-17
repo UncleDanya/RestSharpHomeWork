@@ -1,0 +1,10 @@
+﻿2022-02-17T16:58:36.6355609+02:00;Thread#1;Info;Reading test run result from Json file "C:\Users\Danya\AppData\Local\Temp\f04d142e-fd82-4f0a-8437-dc9148410d65".
+2022-02-17T16:58:36.6375558+02:00;Thread#1;Info;Successfully read test run result from Json file "C:\Users\Danya\AppData\Local\Temp\f04d142e-fd82-4f0a-8437-dc9148410d65"
+2022-02-17T16:58:36.6375558+02:00;Thread#1;Info;Deserializing test run result
+2022-02-17T16:58:37.0245702+02:00;Thread#1;Info;Successfully deserialized test run result
+2022-02-17T16:58:37.0255563+02:00;Thread#1;Info;Loading test run result
+2022-02-17T16:58:37.0415132+02:00;Thread#1;Info;Successfully loaded test run result
+2022-02-17T16:58:37.0484960+02:00;Thread#1;Info;creating 1 report(s)
+2022-02-17T16:58:37.0484960+02:00;Thread#1;Info;generate Report using template ReportTemplate.cshtml
+2022-02-17T16:58:37.6901562+02:00;Thread#1;Info;Finished generating reports.
+========== End of log file ==========

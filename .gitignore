@@ -1,0 +1,4 @@
+.vs/
+*.feature.cs
+*.feature.xlsx.*
+*.Specs_*.html
