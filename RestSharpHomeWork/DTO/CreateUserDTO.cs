@@ -22,7 +22,10 @@ namespace RestSharpHomeWork.DTO
 
         public bool Equals(CreateUserDTO obj)
         {
-            Verify.AreEqual(this.Name, obj.Name, "Name are not equal");
+            Verify.AreEqual(this.Name, obj.Name, "Name not equals");
+            Verify.AreEqual(this.Job, obj.Job, "Job not equals");
+            Verify.AreEqual(this.Id, obj.Id, "Id not equals");
+            Verify.AreEqual(this.CreatedAt, obj.CreatedAt, "CreatedAt not equals");
             return true;
         }
     }

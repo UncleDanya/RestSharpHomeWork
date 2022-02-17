@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using AutomationUtils.Extensions;
+﻿using AutomationUtils.Extensions;
 using AutomationUtils.Utils;
 using Newtonsoft.Json;
-using OpenQA.Selenium.DevTools;
 using RestSharpHomeWork.Appis;
 using RestSharpHomeWork.DTO;
+using RestSharpHomeWork.RunTimeVariables;
 using RestSharpHomeWork.Utils;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace RestSharpHomeWork.Steps
 {
@@ -20,6 +17,7 @@ namespace RestSharpHomeWork.Steps
         private readonly CreateUserDTO createUserDto;
         private readonly RegisterUserDTO registerUserDto;
         private readonly SingleUserDTO singleUserDto;
+        private ResponseVariables responseVariables = new ResponseVariables();
 
         public UserSteps(RestWebClient _client, ListOfUsersDTO _listOfUsers, CreateUserDTO _createUserDto, RegisterUserDTO _registerUserDto, SingleUserDTO _singleUserDto)
         {
@@ -41,36 +39,15 @@ namespace RestSharpHomeWork.Steps
         [When(@"User create new user with name '(.*)' and job '(.*)'")]
         public void WhenUserCreateNewUserWithNameAndJob(string name, string job)
         {
-            var response = client.regresApi.InitApiMethods<UserApi>().CreateUser(name, job).Content;
+            var response = client.regresApi.InitApiMethods<UserApi>().CreateUserPost(name, job).Content;
             JsonConvert.DeserializeObject<CreateUserDTO>(response).CopyPropertiesTo(createUserDto);
         }
 
         [When(@"User changes the job field value '(.*)'")]
         public void WhenUserChangesTheJobFieldValue(string job)
         {
-            var response = client.regresApi.InitApiMethods<UserApi>().FieldJobChangeUser(job).Content;
+            var response = client.regresApi.InitApiMethods<UserApi>().FieldJobChangeUserPut(job).Content;
             JsonConvert.DeserializeObject<CreateUserDTO>(response).CopyPropertiesTo(createUserDto);
-        }
-
-        [When(@"User delete field name '(.*)' value")]
-        public void WhenUserDeleteFieldNameValue(string nameUser)
-        {
-            var response = client.regresApi.InitApiMethods<UserApi>().DeleteUser(nameUser).Content;
-            JsonConvert.DeserializeObject<CreateUserDTO>(response).CopyPropertiesTo(createUserDto);
-        }
-
-        [When(@"User new register with email '(.*)' and password '(.*)'")]
-        public void WhenUserNewRegisterWithEmail(string email, string password)
-        {
-            var response = client.regresApi.InitApiMethods<UserApi>().RegisterUser(email, password).Content;
-            JsonConvert.DeserializeObject<RegisterUserDTO>(response).CopyPropertiesTo(registerUserDto);
-        }
-
-        [When(@"User enter wrong email '(.*)'")]
-        public void WhenUserEnterWrongEmail(string email)
-        {
-            var response = client.regresApi.InitApiMethods<UserApi>().RegisterUnsuccessful(email).Content;
-            JsonConvert.DeserializeObject<RegisterUserDTO>(response).CopyPropertiesTo(registerUserDto);
         }
 
         [When(@"User get request for single user")]
@@ -80,96 +57,66 @@ namespace RestSharpHomeWork.Steps
             JsonConvert.DeserializeObject<SingleUserDTO>(response).CopyPropertiesTo(singleUserDto);
         }
 
-        [When(@"User enter incorrect email '(.*)' field for login")]
-        public void WhenUserEnterWrongValueInEmailField(string wrongEmail)
+        [When(@"User delete field name '(.*)' value")]
+        public void WhenUserDeleteFieldNameValue(string nameUser)
         {
-            var response = client.regresApi.InitApiMethods<UserApi>().UnsuccessfulLogin(wrongEmail).Content;
+            responseVariables.Value = client.regresApi.InitApiMethods<UserApi>().DeleteUser(nameUser);
+        }
+
+        [When(@"User new register with email '(.*)' and password '(.*)'")]
+        public void WhenUserNewRegisterWithEmail(string email, string password)
+        {
+            var response = client.regresApi.InitApiMethods<UserApi>().RegisterUserPost(email, password).Content;
             JsonConvert.DeserializeObject<RegisterUserDTO>(response).CopyPropertiesTo(registerUserDto);
         }
 
         [When(@"User enter correct email '(.*)' and password '(.*)' for login")]
         public void WhenUserEnterCorrectEmail(string email, string password)
         {
-            var response = client.regresApi.InitApiMethods<UserApi>().SuccessfulLogin(email, password).Content;
+            var response = client.regresApi.InitApiMethods<UserApi>().SuccessfulLoginPost(email, password).Content;
             JsonConvert.DeserializeObject<RegisterUserDTO>(response).CopyPropertiesTo(registerUserDto);
         }
 
-
-        [When(@"Test step for work with tables")]
-        public void WhenTestStepForWorkWithTables(Table table)
-        {
-            var imports = table.CreateSet<DataImportDTO>();
-
-            if (imports == null || !imports.Any())
-            {
-                throw new Exception("Data imports table is not set");
-            }
-
-            foreach (var import in imports)
-            {
-                var a =  client.regresApi.InitApiMethods<UserApi>().CreateUser(import.Zlp, import.NotZlp).Content;
-                JsonConvert.DeserializeObject<CreateUserDTO>(a).CopyPropertiesTo(createUserDto);
-            }
-
-            Verify.AreEqual("contentForZlpColumn", createUserDto.Name, "");
-            /*var t1 = table.Header;
-            var t2 = table.Rows[0];
-            var t3 = t2["zlp"];
-            var t4 = table.CreateInstance<ListOfUsersDTO>();*/
-        }
-        
         [Then(@"Verify that number users")]
         public void ThenVerifyThat()
         {
             Verify.AreEqual(listOfUsers.PerPage, listOfUsers.Data.Count, "Number of users on the page does not math the actual");
         }
 
-        [Then(@"Verify that name user equal")]
-        public void ThenVerifyThatNameUserEqual()
+        [Then(@"Verify that name user '(.*)' equal")]
+        public void ThenVerifyThatNameUserEqual(string nameUser)
         {
-            Verify.AreEqual("morpheus", createUserDto.Name, "Expected name is not equal with user name");
+            Verify.AreEqual(nameUser, createUserDto.Name, "Expected name is not equal with user name");
         }
 
-        [Then(@"Verify that field value has been change")]
-        public void ThenVerifyThatFieldValueHasBeenChange()
+        [Then(@"Verify that field value has been change on '(.*)'")]
+        public void ThenVerifyThatFieldValueHasBeenChange(string jobValue)
         {
-            Verify.AreEqual("Senior Junior Automation DevOps", createUserDto.Job, "Expected job is not equal with job user");
+            Verify.AreEqual(jobValue, createUserDto.Job, "Expected job is not equal with job user");
         }
 
         [Then(@"Verify that value in field was removed")]
         public void ThenVerifyThatValueInFieldWasRemoved()
         {
-            Verify.AreEqual(string.Empty, createUserDto.Name, "Value in field is not removed");
+            Verify.AreEqual("NoContent", responseVariables.Value.StatusCode.ToString(), "Status code is incorrect");
         }
 
-        [Then(@"Verify that new user registered")]
-        public void ThenVerifyThatNewUserRegistered()
+        [Then(@"Verify that new user registered and got my Id '(.*)'")]
+        public void ThenVerifyThatNewUserRegistered(string id)
         {
-            Verify.AreEqual(4, registerUserDto.Id, "User id not received or incorrect");
+            Verify.AreEqual(id, registerUserDto.Id, "User id not received or incorrect");
         }
 
-        [Then(@"Verify that user take a error")]
-        public void ThenVerifyThatUserTakeAError()
+        [Then(@"Verify that user get correct info about my email '(.*)'")]
+        public void ThenVerifyThatUserGetCorrectInfo(string email)
         {
-            Verify.AreEqual("Missing password", registerUserDto.Error, "Error is incorrect or user entered correct email");
+            Verify.AreEqual(email, singleUserDto.Datas.Email, "Expected login is not equal with login user");
         }
 
-        [Then(@"Verify that user get correct info")]
-        public void ThenVerifyThatUserGetCorrectInfo()
+        [Then(@"Verify that get a token '(.*)' for success registration")]
+        public void ThenVerifyThatGetATokenForSuccessRegistration(string token)
         {
-            Verify.AreEqual("janet.weaver@reqres.in", singleUserDto.Data.Email, "Expected login is not equal with login user");
-        }
-
-        [Then(@"Verify that user get error")]
-        public void ThenVerifyThatUserGetError()
-        {
-            Verify.AreEqual("Missing password", registerUserDto.Error, "Error is incorrect or user entered correct login");
-        }
-
-        [Then(@"Verify that get a token for success registration")]
-        public void ThenVerifyThatGetATokenForSuccessRegistration()
-        {
-            Verify.AreEqual("QpwL5tke4Pnpja7X4", registerUserDto.Token, "User token not received or incorrect");
+            Verify.AreEqual(token, registerUserDto.Token, "User token not received or incorrect");
         }
     }
 }

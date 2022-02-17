@@ -7,15 +7,16 @@ namespace RestSharpHomeWork.Appis
     {
         public RestResponse GetUserInfo()
         {
-            RestRequest req = new RestRequest("api/users?page=2", Method.Get);
+            RestRequest req = new RestRequest("api/users", Method.Get);
             req.AddHeader("Accept", "application/json");
+            req.AddParameter("page", "2");
             req.RequestFormat = DataFormat.Json;
             var responseTask = Client.ExecuteAsync(req);
             var result = responseTask.Result;
             return result;
         }
 
-        public RestResponse CreateUser(string name, string job)
+        public RestResponse CreateUserPost(string name, string job)
         {
             RestRequest req = new RestRequest("/api/users", Method.Post);
             req.AddHeader("Accept", "application/json");
@@ -26,10 +27,11 @@ namespace RestSharpHomeWork.Appis
             return result;
         }
 
-        public RestResponse FieldJobChangeUser(string change)
+        public RestResponse FieldJobChangeUserPut(string change)
         {
-            RestRequest req = new RestRequest("/api/users/2", Method.Put);
+            RestRequest req = new RestRequest("/api/users", Method.Put);
             req.AddHeader("Accept", "application/json");
+            req.AddParameter("id", "1");
             req.AddParameter("job", change);
             var responseTask = Client.ExecuteAsync(req);
             var result = responseTask.Result;
@@ -38,15 +40,16 @@ namespace RestSharpHomeWork.Appis
 
         public RestResponse DeleteUser(string userName)
         {
-            RestRequest req = new RestRequest("/api/users/2", Method.Delete);
+            RestRequest req = new RestRequest("/api/users", Method.Delete);
             req.AddHeader("Accept", "application/json");
-            req.AddParameter("name", userName);
+            req.AddParameter("id", "2");
+            req.AddParameter("last_name", userName);
             var responseTask = Client.ExecuteAsync(req);
             var result = responseTask.Result;
             return result;
         }
 
-        public RestResponse RegisterUser(string email, string password)
+        public RestResponse RegisterUserPost(string email, string password)
         {
             RestRequest req = new RestRequest("/api/register", Method.Post);
             req.AddHeader("Accept", "application/json");
@@ -57,36 +60,17 @@ namespace RestSharpHomeWork.Appis
             return result;
         }
 
-        public RestResponse UnsuccessfulLogin(string email)
-        {
-            RestRequest req = new RestRequest("/api/login", Method.Post);
-            req.AddHeader("Accept", "application/json");
-            req.AddParameter("email", email);
-            var responseTask = Client.ExecuteAsync(req);
-            var result = responseTask.Result;
-            return result;
-        }
-
         public RestResponse GetSingleUser()
         {
-            RestRequest req = new RestRequest("/api/users/2", Method.Get);
+            RestRequest req = new RestRequest("/api/users", Method.Get);
             req.AddHeader("Accept", "application/json");
+            req.AddParameter("id", "2");
             var responseTask = Client.ExecuteAsync(req);
             var result = responseTask.Result;
             return result;
         }
 
-        public RestResponse RegisterUnsuccessful(string email)
-        {
-            RestRequest req = new RestRequest("/api/register", Method.Post);
-            req.AddHeader("Accept", "application/json");
-            req.AddParameter("email", email);
-            var responseTask = Client.ExecuteAsync(req);
-            var result = responseTask.Result;
-            return result;
-        }
-
-        public RestResponse SuccessfulLogin(string email, string password)
+        public RestResponse SuccessfulLoginPost(string email, string password)
         {
             RestRequest req = new RestRequest("/api/login", Method.Post);
             req.AddHeader("Accept", "application/json");
