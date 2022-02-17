@@ -32,6 +32,8 @@ namespace RestSharpHomeWork.DTO
             Verify.AreEqual(this.Page, obj.Page, "Page not equals");
             Verify.AreEqual(this.Total, obj.Total, "Total not equals");
             Verify.AreEqual(this.TotalPages, obj.TotalPages, "TotalPage not equals");
+            Verify.AreEqual(this.Data, obj.Data, "Data not equals");
+            Verify.AreEqual(this.SupportData, obj.SupportData, "SupportData not equals");
             return true;
         }
     }

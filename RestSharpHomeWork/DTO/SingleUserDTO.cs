@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AutomationUtils.Utils;
+using Newtonsoft.Json;
 
 namespace RestSharpHomeWork.DTO
 {
@@ -14,8 +15,8 @@ namespace RestSharpHomeWork.DTO
 
         public bool Equals(SingleUserDTO obj)
         {
-            //equals two fields above
-
+            Verify.AreEqual(this.Datas, obj.Datas, "Data not equals");
+            Verify.AreEqual(this.Supports, obj.Supports, "Support not equals");
             return true;
         }
     }
